@@ -37,4 +37,4 @@ jobs:
           git pull origin master
 
           echo "✅ Despliegue completado"
-          echo "🌐 La aplicación debería estar disponible en: https://tutupaca.unjbg.edu.pe"
+          echo "🌐 La aplicación debería estar disponible en: https://tutupaca.unjbg.edu.pe" 
