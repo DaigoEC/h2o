@@ -1,0 +1,44 @@
+name: Deploy to CentOS Server
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🚀 Desplegar en CentOS Stream 9
+      uses: appleboy/ssh-action@v1.2.2
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          echo "📦 Actualizando proyecto..."
+          cd ${{ secrets.H2O_PATH }}
+
+          # Configurar directorio como seguro para Git
+          echo "🔧 Configurando directorio como seguro..."
+          git config --global --add safe.directory ${{ secrets.H2O_PATH }}
+
+          # Verificar estado actual
+          echo "📋 Estado actual del repositorio:"
+          git status
+          git log --oneline -5
+
+          # Guardar cambios locales (como .env) antes del pull
+          echo "💾 Guardando cambios locales..."
+          git stash push -m "Cambios locales antes del pull - $(date)"
+
+          # Pull desde GitHub
+          echo "⬇️ Descargando cambios desde GitHub..."
+          git pull origin master
+
+          echo "✅ Despliegue completado"
+          echo "🌐 La aplicación debería estar disponible en: https://tutupaca.unjbg.edu.pe" 
