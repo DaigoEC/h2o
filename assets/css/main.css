@@ -2719,7 +2719,7 @@ input, select, textarea {
 						margin-bottom: 0;
 					}
 
-			.tiles article.style1 > .image:before {
+			/* .tiles article.style1 > .image:before {
 				background-color: #777777;
 			}
 
@@ -2741,7 +2741,7 @@ input, select, textarea {
 
 			.tiles article.style6 > .image:before {
 				background-color: #777777;
-			}
+			} */
 
 			/* body:not(.is-touch) .tiles article:hover > .image { */
 			body:not(.is-touch) .tiles article > .image:hover {
