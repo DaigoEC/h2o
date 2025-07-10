@@ -23,6 +23,10 @@ jobs:
           echo "📦 Actualizando proyecto..."
           cd ${{ secrets.H2O_PATH }}
 
+          # Configurar directorio como seguro para Git
+          echo "🔧 Configurando directorio como seguro..."
+          git config --global --add safe.directory ${{ secrets.H2O_PATH }}
+
           # Verificar estado actual
           echo "📋 Estado actual del repositorio:"
           git status
