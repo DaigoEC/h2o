@@ -59,7 +59,7 @@
 								<img src="images/portada2.jpg" alt=""/>
 							</span>
 							<!--<h1>TRABAJOS DE INVESTIGACIÓN PUBLICADAS EN PRESTIGIOSAS REVISTAS DEL PH.D. EDWIN M. PINO VARGAS</h1>-->
-							<table border="1" width="100%">
+							<table id="produccion-table" border="1" width="100%">
 								<thead>
 									<tr>
 										<th>N°</th>
@@ -69,6 +69,7 @@
 									</tr>
 								</thead>
 								<tbody>
+									<!--AÑO 2025-->
 									<tr>
 										<td>1</td>
 										<td>2025</td>
@@ -105,6 +106,8 @@
 										<td>Assessment of Observed and Projected Extreme Droughts in Perú—Case Study: Candarave, Tacna.</td>
 										<td><a href="https://doi.org/10.3390/atmos16010018" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2024-->
 									<tr>
 										<td>7</td>
 										<td>2024</td>
@@ -189,6 +192,8 @@
 										<td>A Concerted Proposal Based on an Imminent Collapse Scenario for Groundwater Management in an Overexploited Aquifer, Atacama Desert.</td>
 										<td><a href="https://doi.org/10.3897/ap.7.e0001" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2023-->
 									<tr>
 										<td>21</td>
 										<td>2023</td>
@@ -219,6 +224,8 @@
 										<td>A Multi-Criteria Decision-Making Technique Using Remote Sensors to Evaluate the Potential of Groundwater in the Arid Zone Basin of the Atacama Desert.</td>
 										<td><a href="https://doi.org/10.3390/w15071344" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2022-->
 									<tr>
 										<td>26</td>
 										<td>2022</td>
@@ -315,6 +322,8 @@
 										<td>Alteración geomorfológica en relación a las acciones antrópicas en el cauce del río Caplina, Tacna, Perú.</td>
 										<td><a href="https://doi.org/10.17268/agroind.sci.2022.01.06" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2021-->
 									<tr>
 										<td>42</td>
 										<td>2021</td>
@@ -363,6 +372,8 @@
 										<td>Sobreexplotación del agua subterránea y la agroexportación en el acuífero costero de la Yarada, Tacna, Perú.</td>
 										<td><a href="https://doi.org/10.22231/asyd.v18i2.969" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2020-->
 									<tr>
 										<td>50</td>
 										<td>2020</td>
@@ -381,6 +392,8 @@
 										<td>Solución numérica de ecuaciones diferenciales ordinarias y parciales. Aplicaciones usando Excel y MATLAB.</td>
 										<td><a href="https://doi.org/10.33326/9786124818943" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2019-->
 									<tr>
 										<td>53</td>
 										<td>2019</td>
@@ -453,6 +466,8 @@
 										<td>La hidrología en el tiempo: una revisión histórica.</td>
 										<td><a href="https://doi.org/10.33326/9786124633881" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2018-->
 									<tr>
 										<td>65</td>
 										<td>2018</td>
@@ -465,6 +480,8 @@
 										<td>Caracterización hidrogeológica para determinar el deterioro de la calidad del agua en el acuífero La Yarada Media.</td>
 										<td><a href="https://doi.org/10.18271/ria.2018.424" target="_blank">Ver Artículo</a></td>
 									</tr>
+
+									<!--AÑO 2017-->
 									<tr>
 										<td>67</td>
 										<td>2017</td>
@@ -486,6 +503,7 @@
 									<!-- Agrega aquí las demás filas, completando años y títulos -->
 								</tbody>
 							</table>
+							<div id="pagination-container" style="text-align:center; margin-top:20px;"></div>
 						</div>
 					</div>
 
@@ -538,6 +556,65 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var table = document.getElementById('produccion-table');
+			var tbody = table.querySelector('tbody');
+			var rows = Array.from(tbody.querySelectorAll('tr'));
+			var rowsPerPage = 20;
+			var currentPage = 1;
+			var totalPages = Math.ceil(rows.length / rowsPerPage);
+			var paginationContainer = document.getElementById('pagination-container');
+
+			function showPage(page) {
+				// Hide all rows
+				rows.forEach(function(row, i) {
+					row.style.display = 'none';
+				});
+				// Show only the rows for the current page
+				var start = (page - 1) * rowsPerPage;
+				var end = start + rowsPerPage;
+				rows.slice(start, end).forEach(function(row) {
+					row.style.display = '';
+				});
+				// Update pagination buttons
+				renderPagination(page);
+			}
+
+			function renderPagination(page) {
+				paginationContainer.innerHTML = '';
+				if (totalPages <= 1) return;
+				// Previous button
+				var prevBtn = document.createElement('button');
+				prevBtn.textContent = 'Anterior';
+				prevBtn.className = 'button primary';
+				prevBtn.disabled = page === 1;
+				prevBtn.onclick = function() { showPage(page - 1); };
+				paginationContainer.appendChild(prevBtn);
+
+				// Page numbers
+				for (var i = 1; i <= totalPages; i++) {
+					var pageBtn = document.createElement('button');
+					pageBtn.textContent = i;
+					pageBtn.className = 'button' + (i === page ? ' primary' : '');
+					pageBtn.disabled = i === page;
+					pageBtn.onclick = (function(i) { return function() { showPage(i); }; })(i);
+					paginationContainer.appendChild(pageBtn);
+				}
+
+				// Next button
+				var nextBtn = document.createElement('button');
+				nextBtn.textContent = 'Siguiente';
+				nextBtn.className = 'button primary';
+				nextBtn.disabled = page === totalPages;
+				nextBtn.onclick = function() { showPage(page + 1); };
+				paginationContainer.appendChild(nextBtn);
+			}
+
+			showPage(currentPage);
+		});
+		</script>
 
 	</body>
 </html>
