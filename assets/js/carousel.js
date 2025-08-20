@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Carousel text overlay logic
-  const carouselTexts = ["Proyecto 1", "Proyecto 2", "Proyecto 3", "Proyecto 4"];
+  const carouselTexts = ["41st IAHR World Congress (IAHR2025) will be held from 22-27 June 2025 at the Singapore EXPO", "XXXI Congreso Latinoamericano de Hidráulica. Oct 1 al 4 de 2024. Universidad de Medellín, Colombia", "Visita técnica fábrica y laboratorio de hidráulica e hidrología GUNT, Hamburgo, Alemania, marzo 2024", "Visita Universidad Politecnica de Valencia, Valencia, España, del 25 al 27 octubre 2023","Cairo Water Week, 29th October – 2nd November 2023. Action on Water Adaptation for Sustainability","40th IAHR World Congress in Vienna, Austria, from August 21st to 25th, 2023.","Congreso de Agricultura Digital, 24 al 28 de octubre 2022, Talca, Chile"];
   const carouselTextSpan = document.getElementById("carousel-text");
   window.updateCarouselText = (idx) => {
     if (carouselTextSpan) carouselTextSpan.textContent = carouselTexts[idx];
