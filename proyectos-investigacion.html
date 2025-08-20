@@ -16,11 +16,6 @@
     <noscript
       ><link rel="stylesheet" href="assets/css/noscript.css"
     /></noscript>
-
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -54,13 +49,19 @@
           <li><a href="areas-investigacion.html">Áreas de investigación</a></li>
           <!--<li><a href="proyectos-investigacion.html">Proyectos de Investigación</a></li>-->
           <li>
-            <a href="produccion-cientifica.html">Producción Científica</a>
-          </li>
-          <li>
             <a
               href="https://ee-sam20048130.projects.earthengine.app/view/olivocuenta"
               target="_blank"
+              rel="noopener noreferrer"
               >Herramientas H2O</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://zentracloud.com/#/dashboard_detail"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Estación H2O</a
             >
           </li>
           <!--<li><a href="elements.html">Elements</a></li>-->
@@ -77,26 +78,53 @@
           /></span> -->
 
           <!--Inicio de Carrusel-->
-          <!--Inicio de Carrusel-->
           <div
             id="custom-carousel"
             style="position: relative; max-width: 100%; margin: 0 auto"
           >
-            <div class="carousel-images" style="overflow: hidden">
+            <div
+              class="carousel-images"
+              style="overflow: hidden; position: relative"
+            >
+              <div
+                class="carousel-overlay"
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  width: 100%;
+                  background: rgba(0, 0, 0, 0.4);
+                  color: #fff;
+                  padding: 16px;
+                  font-size: 1.2em;
+                  z-index: 2;
+                  text-align: center;
+                  pointer-events: none;
+                "
+              >
+                <span id="carousel-text">Proyecto 1</span>
+                          
+              </div>
               <img
-                src="images/portada1.jpg"
+                src="images/evento/evento1.jpg"
                 alt="Proyecto 1"
                 class="carousel-img"
                 style="width: 100%; display: block"
               />
               <img
-                src="images/portada1.jpg"
+                src="images/evento/evento2.jpg"
                 alt="Proyecto 2"
                 class="carousel-img"
                 style="width: 100%; display: none"
               />
               <img
-                src="images/portada1.jpg"
+                src="images/evento/evento3.jpg"
+                alt="Proyecto 3"
+                class="carousel-img"
+                style="width: 100%; display: none"
+              />
+              <img
+                src="images/evento/evento4.jpg"
                 alt="Proyecto 3"
                 class="carousel-img"
                 style="width: 100%; display: none"
@@ -131,76 +159,16 @@
               style="text-align: center; margin-top: 10px"
             ></div>
           </div>
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              var images = document.querySelectorAll(
-                "#custom-carousel .carousel-img"
-              );
-              var prevBtn = document.getElementById("carousel-prev");
-              var nextBtn = document.getElementById("carousel-next");
-              var indicators = document.getElementById("carousel-indicators");
-              var current = 0;
-              var interval = null;
-
-              function showImage(idx) {
-                images.forEach(function (img, i) {
-                  img.style.display = i === idx ? "block" : "none";
-                });
-                renderIndicators(idx);
-              }
-              function renderIndicators(idx) {
-                indicators.innerHTML = "";
-                for (var i = 0; i < images.length; i++) {
-                  var dot = document.createElement("span");
-                  dot.style.display = "inline-block";
-                  dot.style.width = "12px";
-                  dot.style.height = "12px";
-                  dot.style.margin = "0 4px";
-                  dot.style.borderRadius = "50%";
-                  dot.style.background = i === idx ? "#49b2e6" : "#ccc";
-                  dot.style.cursor = "pointer";
-                  dot.onclick = (function (i) {
-                    return function () {
-                      current = i;
-                      showImage(current);
-                      resetInterval();
-                    };
-                  })(i);
-                  indicators.appendChild(dot);
-                }
-              }
-              function nextImage() {
-                current = (current + 1) % images.length;
-                showImage(current);
-              }
-              function prevImage() {
-                current = (current - 1 + images.length) % images.length;
-                showImage(current);
-              }
-              function resetInterval() {
-                if (interval) clearInterval(interval);
-                interval = setInterval(nextImage, 4000);
-              }
-              prevBtn.onclick = function () {
-                prevImage();
-                resetInterval();
-              };
-              nextBtn.onclick = function () {
-                nextImage();
-                resetInterval();
-              };
-              showImage(current);
-              resetInterval();
-            });
-          </script>
           <!--Fin de Carrusel-->
+          <script src="assets/js/carousel.js"></script>
 
+          <!--LISTA DE PROYECTOS DE INVESTIGACION-->
           <h2>Lista de Proyectos de Investigación</h2>
 
           <section class="tiles">
             <article class="style1">
               <span class="image">
-                <img src="images/proyecto01.jpg" alt="" />
+                <img src="images/proyecto/proyecto01.jpg" alt="" />
               </span>
               <a
                 href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=59144"
@@ -221,7 +189,7 @@
             </article>
             <article class="style1">
               <span class="image">
-                <img src="images/proyecto01.jpg" alt="" />
+                <img src="images/proyecto/proyecto02.png" alt="" />
               </span>
               <a
                 href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=59144"
@@ -229,9 +197,9 @@
                 <!--<h2>Ph.D. Edwin M. Pino Vargas</h2>-->
                 <div class="content">
                   <p>
-                    USO DE VEHÍCULOS AÉREOS NO TRIPULADOS (DRONES) PARA OBTENER
-                    HUMEDAD DEL SUELO EN EL OLIVO CON FINES DE PROGRAMACIÓN DE
-                    RIEGO EN TIEMPO REAL EN LA YARADA, TACNA, PERÚ
+                    INTEGRACIÓN DE MÉTODOS HIDRODINÁMICOS, HIDROQUIMICOS E
+                    ISOTOPICOS PARA PRECISAR EL FUNCIONAMIENTO Y MANEJO
+                    SOSTENIBLE DEL ACUIFERO LA YARADA, TACNA, PERU
                   </p>
                 </div>
               </a>
